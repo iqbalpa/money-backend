@@ -33,6 +33,17 @@ expenseRouter.get("/", async (request, response) => {
 	response.status(200).json(expenses);
 });
 
+// get expense by id
+expenseRouter.get("/:id", async (request, response) => {
+	const id = request.params.id;
+	const expense = await Expense.findById(id);
+	if (!expense) {
+		return response.status(404).json({ error: "expense not found" });
+	}
+
+	response.status(200).json(expense);
+});
+
 // update expense by id
 expenseRouter.patch("/:id", async (request, response) => {
 	const id = request.params.id;
