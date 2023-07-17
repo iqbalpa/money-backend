@@ -4,7 +4,7 @@ const User = require("../models/user");
 const loginRouter = require("express").Router();
 
 loginRouter.post("/signup", async (request, response) => {
-	const { name, username, password } = request.body;
+	const { name, username, password, age } = request.body;
 	if (!(username && password)) {
 		return response.status(401).json({ error: "username and password cannot be emptied" });
 	}
@@ -17,7 +17,7 @@ loginRouter.post("/signup", async (request, response) => {
 	}
 
 	const passwordHash = await bcrypt.hash(password, 10);
-	const user = new User({ name, username, passwordHash });
+	const user = new User({ name, username, passwordHash, age });
 	await user.save();
 	response.status(201).send("user created");
 });
