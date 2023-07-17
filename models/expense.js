@@ -4,12 +4,11 @@ const expenseSchema = new mongoose.Schema({
 	amount: Number,
 	date: Date,
 	category: String,
-	user: [
-		{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: "User",
-		},
-	],
+	isExpense: Boolean, // true if expense, false if income
+	user: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "User",
+	},
 });
 
 expenseSchema.set("toJSON", {
