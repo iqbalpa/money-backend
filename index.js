@@ -1,10 +1,7 @@
-const express = require("express");
-const app = express();
+const app = require("./app");
+const logger = require("./utils/logger");
+const config = require("./utils/config");
 
-app.get("/", async (req, res) => {
-	res.json({ message: "this endpoint works!" }).status(200);
-});
-
-app.listen(3000, () => {
-	console.log("listen to port 3000");
+app.listen(config.PORT, () => {
+	logger.info(`listen to port ${config.PORT}`);
 });
