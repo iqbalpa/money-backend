@@ -37,12 +37,12 @@ loginRouter.post("/login", async (request, response) => {
 	};
 	const token = jwt.sign(userForToken, process.env.SECRET);
 
-	response.status(200).send({ token, username: user.username, name: user.name });
+	response.status(200).json({ token, username: user.username, name: user.name, age: user.age });
 });
 
 loginRouter.get("/", async (request, response) => {
 	const users = await User.find({});
-	const result = users.map((user) => ({ user: user.username, name: user.name, id: user.id }));
+	const result = users.map((user) => ({ user: user.username, name: user.name, id: user.id, age: user.age }));
 	response.status(200).json(result);
 });
 
