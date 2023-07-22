@@ -42,7 +42,7 @@ loginRouter.post("/login", async (request, response) => {
 
 loginRouter.get("/", async (request, response) => {
 	const users = await User.find({});
-	const result = users.map((user) => ({ user: user.username, name: user.name, id: user.id, age: user.age }));
+	const result = users.map((user) => ({ username: user.username, name: user.name, id: user.id, age: user.age }));
 	response.status(200).json(result);
 });
 
